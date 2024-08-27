@@ -60,7 +60,7 @@
     </dependencies>
 
     <build>
-        <finalName>CapstoneProject_KohlerUrsula</finalName>
+        <finalName>capstoneproject</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
