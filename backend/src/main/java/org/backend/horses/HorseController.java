@@ -1,6 +1,5 @@
-package org.backend;
+package org.backend.horses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,13 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/ridinglesson")
+@RequestMapping("/api/horses")
 
-public class RidinglessonController {
-    private final RidinglessonService ridinglessonService;
+public class HorseController {
+    private final HorseService horseService;
 
     @GetMapping
-    public List<Horses> getAllHorses() {
-        return ridinglessonService.findAllHorses();
+    public List<Horse> getAllHorses() {
+        return horseService.findAllHorses();
     }
 }
