@@ -1,4 +1,4 @@
-package org.backend.Ridinglesson;
+package org.backend.ridinglesson;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

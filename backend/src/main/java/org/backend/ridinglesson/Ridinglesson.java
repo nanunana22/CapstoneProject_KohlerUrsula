@@ -1,6 +1,4 @@
-package org.backend.Ridinglesson;
-
-import org.backend.horses.Horse;
+package org.backend.ridinglesson;
 
 public record Ridinglesson(
         String id,

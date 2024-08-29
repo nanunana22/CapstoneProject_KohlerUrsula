@@ -1,4 +1,4 @@
-package org.backend.Ridinglesson;
+package org.backend.ridinglesson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
