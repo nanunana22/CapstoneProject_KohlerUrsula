@@ -6,7 +6,7 @@ public record Ridinglesson(
         String id,
         String ridinginstructor,
         String ridingtype,
-        Horse horse,
+        String horse,
         String Date,
         String Time
 ) {
