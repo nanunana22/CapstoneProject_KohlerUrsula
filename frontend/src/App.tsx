@@ -4,27 +4,28 @@ import HorseCard from "./components/HorseCard.tsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Ridinglesson} from "./models/Ridinglesson.ts";
+import RidinglessonCard from "./components/RidinglessonCard.tsx";
 
 export default function App() {
 
-    const [horses, setHorses] = useState<Horse[]>()
+    const [ridinglessons, setRidinglesson] = useState<Ridinglesson[]>()
 
     useEffect(
         () => {
-        axios.get(`api/horses`)
+        axios.get(`api/ridinglessons`)
             .then(response => {
-            setHorses(response.data);
+            setRidinglesson(response.data);
         })
         }, []
     )
-    if (!horses){
-        return "Lade.."
+    if (!ridinglessons){
+        return "Please wait =)..."
     }
   return (
       <>
           <h1>Riding lesson booking system</h1>
           {
-              horses.map(horse=> <HorseCard horse={horse} key={horse.id}/>)
+              ridinglessons.map(ridinglesson=> <RidinglessonCard ridinglesson={ridinglesson} key={ridinglesson.id}/>)
 
           }
 
