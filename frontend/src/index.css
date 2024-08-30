@@ -5,9 +5,10 @@ body{
 .ridinglesson-card{
     border: solid 1px black;
     border-radius: 5px;
-    height: 50px;
-    width: 100px;
+    height: 120px;
+    width: 200px;
     margin-bottom: 20px;
     padding: 10px;
+    background-color: mediumaquamarine;
 }
 

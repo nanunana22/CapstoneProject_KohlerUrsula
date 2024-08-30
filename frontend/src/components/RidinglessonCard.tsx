@@ -9,12 +9,23 @@ type Props = {
 export default function RidinglessonCard(props: Props) {
     return (
         <div className="ridinglesson-card">
-            {props.ridinglesson.horse}
-            {props.ridinglesson.ridinginstructor}
-            {props.ridinglesson.ridingtype}
-            {props.ridinglesson.date}
-            {props.ridinglesson.time}
-
+            <ul>
+                <li>
+                    {props.ridinglesson.horse}
+                </li>
+                <li>
+                    {props.ridinglesson.ridinginstructor}
+                </li>
+                <li>
+                    {props.ridinglesson.ridingtype}
+                </li>
+                <li>
+                    {props.ridinglesson.date}
+                </li>
+                <li>
+                    {props.ridinglesson.time}
+                </li>
+            </ul>
         </div>
     );
 }
