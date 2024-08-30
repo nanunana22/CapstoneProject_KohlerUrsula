@@ -1,9 +1,7 @@
 package org.backend.ridinglesson;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RequiredArgsConstructor
@@ -16,5 +14,10 @@ public class RidinglessonController {
     @GetMapping
     public List<Ridinglesson> getAllLessons() {
         return ridinglessonService.findAllLessons();
+    }
+
+    @GetMapping("id")
+    public Ridinglesson getRidinglessonById(@PathVariable String id) {
+        return ridinglessonService.findRidinglessonById(id);
     }
 }
