@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class ridinglessonIDService {
-    public String randomId(){
+class RidinglessonIDService {
+
+    public static String randomId(){
         return UUID.randomUUID().toString();
     }
 }

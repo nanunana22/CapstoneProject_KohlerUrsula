@@ -20,4 +20,9 @@ public class RidinglessonController {
     public Ridinglesson getRidinglessonById(@PathVariable String id) {
         return ridinglessonService.findRidinglessonById(id);
     }
+
+    @PostMapping
+    public Ridinglesson postRL(@RequestBody NewRidinglesson newRidinglesson) {
+        return ridinglessonService.addRidinglesson(newRidinglesson);
+    }
 }
