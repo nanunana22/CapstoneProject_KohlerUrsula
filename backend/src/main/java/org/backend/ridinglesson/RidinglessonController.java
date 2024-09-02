@@ -4,12 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/ridinglessons")
 
 public class RidinglessonController {
     private final RidinglessonService ridinglessonService;
+    private final RidinglessonRepo ridinglessonRepo;
 
     @GetMapping
     public List<Ridinglesson> getAllLessons() {
@@ -22,7 +25,10 @@ public class RidinglessonController {
     }
 
     @PostMapping
-    public Ridinglesson postRL(@RequestBody NewRidinglesson newRidinglesson) {
-        return ridinglessonService.addRidinglesson(newRidinglesson);
+    public Ridinglesson postRidinglesson(@RequestBody NewRidinglesson newRidinglesson) {
+        Ridinglesson ridinglesson = new Ridinglesson(UUID.randomUUID().toString(),
+                newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(),
+                newRidinglesson.horse(), newRidinglesson.Date(), newRidinglesson.Time());
+        return ridinglessonRepo.save(ridinglesson);
     }
 }
