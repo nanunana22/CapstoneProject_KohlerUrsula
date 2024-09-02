@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -22,8 +23,16 @@ public class RidinglessonService {
     public Ridinglesson addRidinglesson(NewRidinglesson newRidinglesson) {
         String id = RidinglessonIDService.randomId();
 
-        Ridinglesson ridinglessonToSave = new Ridinglesson(id, newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.Date(), newRidinglesson.Time());
+        Ridinglesson ridinglessonToSave = new Ridinglesson(id, newRidinglesson.ridinginstructor(),
+                newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.Date(),
+                newRidinglesson.Time());
 
         return ridinglessonRepo.save(ridinglessonToSave);
+    }
+    public Ridinglesson save(NewRidinglesson newRidinglesson){
+        Ridinglesson ridinglesson = new Ridinglesson(UUID.randomUUID().toString(),
+                newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(),
+                newRidinglesson.horse(), newRidinglesson.Date(), newRidinglesson.Time());
+        return ridinglessonRepo.save(ridinglesson);
     }
 }

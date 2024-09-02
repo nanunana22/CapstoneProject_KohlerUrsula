@@ -1,8 +1,6 @@
 package org.backend.ridinglesson;
 
-import java.math.BigDecimal;
-
-public record Ridinglesson(
+public record RidinglessonDTO(
         String id,
         String ridinginstructor,
         String ridingtype,

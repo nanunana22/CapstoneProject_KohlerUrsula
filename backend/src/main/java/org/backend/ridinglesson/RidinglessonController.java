@@ -15,8 +15,13 @@ public class RidinglessonController {
     private final RidinglessonRepo ridinglessonRepo;
 
     @GetMapping
-    public List<Ridinglesson> getAllLessons() {
-        return ridinglessonService.findAllLessons();
+    public List<RidinglessonDTO> getAllLessons() {
+        List<Ridinglesson> ridinglessons = ridinglessonService.findAllLessons();
+        return ridinglessons.stream()
+                .map(ridinglesson -> new RidinglessonDTO(ridinglesson.id(), ridinglesson.ridinginstructor(),
+                        ridinglesson.ridingtype(), ridinglesson.horse(),
+                        ridinglesson.Date(), ridinglesson.Time()))
+                .toList();
     }
 
     @GetMapping("id")
@@ -25,10 +30,9 @@ public class RidinglessonController {
     }
 
     @PostMapping
-    public Ridinglesson postRidinglesson(@RequestBody NewRidinglesson newRidinglesson) {
-        Ridinglesson ridinglesson = new Ridinglesson(UUID.randomUUID().toString(),
-                newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(),
-                newRidinglesson.horse(), newRidinglesson.Date(), newRidinglesson.Time());
-        return ridinglessonRepo.save(ridinglesson);
+    public RidinglessonDTO postRidinglesson(@RequestBody NewRidinglesson newRidinglesson) {
+        Ridinglesson saved = ridinglessonService.save(newRidinglesson);
+        return new RidinglessonDTO(saved.id(), saved.ridinginstructor(), saved.ridingtype(),
+                saved.horse(), saved.Date(), saved.Time());
     }
 }
