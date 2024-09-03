@@ -26,7 +26,17 @@ export default function App() {
   return (
       <>
           <h1>Riding lesson booking system</h1>
+          {
+              allPossibleRidinglessons.map(status =>{
+                  const filteredRidinglessons : Ridinglesson[] =
+                      ridinglessons.filter(ridinglesson => ridinglesson.status === status)
+                      return <RidinglessonColumn status={status} ridinglessons={filteredRidinglessons}/>
+                  })
+
+          }
+
           <h2>TO_CREATE</h2>
+
           <ul>
               {ridinglessons.filter(lesson => lesson.status == "TO_CREATE").map((ridinglesson, index) =>
                   <RidinglessonCard key={ridinglesson.id} ridinglesson={ridinglesson}/>)}
