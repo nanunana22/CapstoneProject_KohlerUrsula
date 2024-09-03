@@ -6,6 +6,7 @@ public record RidinglessonDTO(
         String ridingtype,
         String horse,
         String Date,
-        String Time
+        String Time,
+        RidinglessonStatus status
 ) {
 }

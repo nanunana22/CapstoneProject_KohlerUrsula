@@ -25,14 +25,14 @@ public class RidinglessonService {
 
         Ridinglesson ridinglessonToSave = new Ridinglesson(id, newRidinglesson.ridinginstructor(),
                 newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.Date(),
-                newRidinglesson.Time());
+                newRidinglesson.Time(), newRidinglesson.status());
 
         return ridinglessonRepo.save(ridinglessonToSave);
     }
     public Ridinglesson save(NewRidinglesson newRidinglesson){
         Ridinglesson ridinglesson = new Ridinglesson(UUID.randomUUID().toString(),
-                newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(),
-                newRidinglesson.horse(), newRidinglesson.Date(), newRidinglesson.Time());
+                newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.Date(),
+                newRidinglesson.Time(), newRidinglesson.status());
         return ridinglessonRepo.save(ridinglesson);
     }
 }

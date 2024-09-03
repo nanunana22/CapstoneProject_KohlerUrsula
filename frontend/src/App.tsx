@@ -2,7 +2,8 @@ import './App.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Ridinglesson} from "./models/Ridinglesson.ts";
-import RidinglessonCard from "./components/RidinglessonCard.tsx";
+import RidinglessonColumn from "./RidinglessonColumn.tsx";
+import {allPossibleRidinglessons} from "./RidinglessonStatus.ts";
 
 
 export default function App() {
@@ -24,11 +25,12 @@ export default function App() {
       <>
           <h1>Riding lesson booking system</h1>
           {
-              ridinglessons.map(ridinglesson=> <RidinglessonCard ridinglesson={ridinglesson} key={ridinglesson.id}/>)
-
+              allPossibleRidinglessons.map(status => {
+                  const filteredRidinglessons =
+                      ridinglessons.filter(ridinglessons => ridinglessons.status === status);
+                  return <RidinglessonColumn status={status} ridinglessons={filteredRidinglessons} />})
           }
-
-      </>
+          </>
   )
 }
 

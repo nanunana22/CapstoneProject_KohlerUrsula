@@ -1,3 +1,5 @@
+import {RidinglessonStatus} from "../RidinglessonStatus.ts";
+
 export type Ridinglesson = {
     id: string,
     ridinginstructor: string,
@@ -5,4 +7,5 @@ export type Ridinglesson = {
     horse: string,
     date: string,
     time: string,
+    status: RidinglessonStatus,
 }

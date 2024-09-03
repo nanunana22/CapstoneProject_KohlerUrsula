@@ -5,7 +5,8 @@ public record NewRidinglesson(
         String ridingtype,
         String horse,
         String Date,
-        String Time
+        String Time,
+        RidinglessonStatus status
 
 ) {
 }
