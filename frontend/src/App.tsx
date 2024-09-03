@@ -1,10 +1,9 @@
 import './App.css'
-import {Horse} from "./models/Horse.ts";
-import HorseCard from "./components/HorseCard.tsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Ridinglesson} from "./models/Ridinglesson.ts";
 import RidinglessonCard from "./components/RidinglessonCard.tsx";
+
 
 export default function App() {
 

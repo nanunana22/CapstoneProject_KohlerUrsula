@@ -18,8 +18,7 @@ public class RidinglessonController {
     public List<RidinglessonDTO> getAllLessons() {
         List<Ridinglesson> ridinglessons = ridinglessonService.findAllLessons();
         return ridinglessons.stream()
-                .map(ridinglesson -> new RidinglessonDTO(ridinglesson.id(), ridinglesson.ridinginstructor(),
-                        ridinglesson.ridingtype(), ridinglesson.horse(),
+                .map(ridinglesson -> new RidinglessonDTO(ridinglesson.id(), ridinglesson.ridinginstructor(), ridinglesson.ridingtype(), ridinglesson.horse(),
                         ridinglesson.Date(), ridinglesson.Time()))
                 .toList();
     }
