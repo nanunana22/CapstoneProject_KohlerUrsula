@@ -3,6 +3,7 @@ import {Ridinglesson} from "./models/Ridinglesson.ts";
 import axios from "axios";
 
 type Props = {
+    onNewRidinglessonSaved: () => void
 }
 
 export default function NewRidinglessonCard(props: Props): JSX.Element {
@@ -21,6 +22,7 @@ export default function NewRidinglessonCard(props: Props): JSX.Element {
             date: text,
             status: "TO_BOOK"
         } as Ridinglesson)
+        .then(props.onNewRidinglessonSaved)
     }
     return(
         <div className="ridinglesson-card new-ridinglesson">

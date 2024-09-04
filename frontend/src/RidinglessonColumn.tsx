@@ -5,7 +5,8 @@ import NewRidinglessonCard from "./NewRidinglessonCard.tsx";
 
 type Props = {
     status: RidinglessonStatus,
-    ridinglessons: Ridinglesson[]
+    ridinglessons: Ridinglesson[],
+    onNewRidinglessonItemSaved: () => void
 }
 
 export default function RidinglessonColumn(props: Props) {
@@ -17,7 +18,7 @@ export default function RidinglessonColumn(props: Props) {
 
         }
         {
-            (props.status === "TO_CREATE") && <NewRidinglessonCard/>
+            (props.status === "TO_CREATE") && <NewRidinglessonCard onNewRidinglessonSaved={props.onNewRidinglessonItemSaved}/>
 
         }
         </div>

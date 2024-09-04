@@ -11,14 +11,14 @@ export default function App() {
 
     const [ridinglessons, setRidinglesson] = useState<Ridinglesson[]>()
 
-    useEffect(
-        () => {
+    function fetchRidinglessons() {
         axios.get(`api/ridinglessons`)
             .then(response => {
-            setRidinglesson(response.data);
-        })
-        }, []
-    )
+                setRidinglesson(response.data);
+            })
+    }
+    useEffect(fetchRidinglessons, []);
+
     if (!ridinglessons){
         return "Please wait =)..."
     }
@@ -30,7 +30,7 @@ export default function App() {
               allPossibleRidinglessons.map(status =>{
                   const filteredRidinglessons : Ridinglesson[] =
                       ridinglessons.filter(ridinglesson => ridinglesson.status === status)
-                      return <RidinglessonColumn status={status} ridinglessons={filteredRidinglessons}/>
+                      return <RidinglessonColumn status={status} ridinglessons={filteredRidinglessons} onNewRidinglessonItemSaved={fetchRidinglessons}/>
                   })
 
           }
