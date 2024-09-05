@@ -5,8 +5,8 @@ public record RidinglessonDTO(
         String ridinginstructor,
         String ridingtype,
         String horse,
-        String Date,
-        String Time,
+        String date,
+        String time,
         RidinglessonStatus status
 ) {
 }

@@ -25,6 +25,9 @@ export default function RidinglessonCard(props: Props) {
                 <li>
                     {props.ridinglesson.time}
                 </li>
+                <li>
+                    {props.ridinglesson.status}
+                </li>
             </ul>
         </div>
     );

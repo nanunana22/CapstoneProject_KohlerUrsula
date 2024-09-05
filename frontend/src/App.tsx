@@ -34,23 +34,6 @@ export default function App() {
                   })
 
           }
-
-          {/*<h2>TO_CREATE</h2>*/}
-
-          {/*<ul>*/}
-          {/*    {ridinglessons.filter(lesson => lesson.status == "TO_CREATE").map((ridinglesson, index) =>*/}
-          {/*        <RidinglessonCard key={ridinglesson.id} ridinglesson={ridinglesson}/>)}*/}
-          {/*</ul>*/}
-          {/*<h2>TO_BOOK</h2>*/}
-          {/*<ul>*/}
-          {/*    {ridinglessons.filter(lesson => lesson.status == "TO_BOOK").map((ridinglesson, index) =>*/}
-          {/*        <RidinglessonCard key={ridinglesson.id} ridinglesson={ridinglesson}/>)}*/}
-          {/*</ul>*/}
-          {/*<h2>BOOKED_LESSON</h2>*/}
-          {/*<ul>*/}
-          {/*    {ridinglessons.filter(lesson => lesson.status == "BOOKED_LESSON").map((ridinglesson, index) =>*/}
-          {/*        <RidinglessonCard key={ridinglesson.id} ridinglesson={ridinglesson}/>)}*/}
-          {/*</ul>*/}
       </>
   )
 }

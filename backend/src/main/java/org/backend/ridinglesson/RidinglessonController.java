@@ -19,7 +19,7 @@ public class RidinglessonController {
         List<Ridinglesson> ridinglessons = ridinglessonService.findAllLessons();
         return ridinglessons.stream()
                 .map(ridinglesson -> new RidinglessonDTO(ridinglesson.id(), ridinglesson.ridinginstructor(), ridinglesson.ridingtype(), ridinglesson.horse(),
-                        ridinglesson.Date(), ridinglesson.Time(), ridinglesson.status()))
+                        ridinglesson.date(), ridinglesson.time(), ridinglesson.status()))
                 .toList();
     }
 
@@ -32,6 +32,6 @@ public class RidinglessonController {
     public RidinglessonDTO postRidinglesson(@RequestBody NewRidinglesson newRidinglesson) {
         Ridinglesson saved = ridinglessonService.save(newRidinglesson);
         return new RidinglessonDTO(saved.id(), saved.ridinginstructor(), saved.ridingtype(),
-                saved.horse(), saved.Date(), saved.Time(), saved.status());
+                saved.horse(), saved.date(), saved.time(), saved.status());
     }
 }
