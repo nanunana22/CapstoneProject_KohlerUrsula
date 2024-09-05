@@ -2,11 +2,31 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-.horse-card{
+.page{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+h1{
+    grid-column: 1/-1;
+    text-align: center;
+}
+
+.ridinglesson-card{
     border: solid 1px black;
     border-radius: 5px;
-    height: 50px;
-    width: 100px;
+    height: 120px;
+    width: 200px;
     margin-bottom: 20px;
     padding: 10px;
+    background-color: mediumaquamarine;
+}
+.ridinglesson-card.new-ridinglesson{
+    display: grid;
+    gap: 10px;
+}
+input{
+    width: 100px;
+    border-width: 0 0 1px 0;
+    padding: 0;
 }
