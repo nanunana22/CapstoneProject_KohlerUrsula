@@ -7,6 +7,7 @@ import org.mockito.MockedStatic;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.backend.ridinglesson.RidinglessonStatus.TO_BOOK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -28,5 +29,23 @@ class RidinglessonServiceTest {
         verify(ridinglessonRepo).findAll();
         assertEquals(ridinglesson, actual);
     }
+
+    @Test
+    void addNewRidingLesson(){
+        //Given
+        RidinglessonDTO ridinglessonDTO = new RidinglessonDTO( "ina", "dressage",
+                "rivien", "02.03.2024","15:00", TO_BOOK);
+        Ridinglesson ridinglesson = new Ridinglesson(null, "ina", "dressage",
+                "rivien", "02.03.2024","15:00", TO_BOOK);
+        when(ridinglessonRepo.save(ridinglesson)).thenReturn(ridinglesson);
+        //When
+        Ridinglesson actual = ridinglessonService.save(ridinglessonDTO);
+        //Then
+
+        verify(ridinglessonRepo).save(ridinglesson);
+        assertEquals(ridinglesson, actual);
+    }
+
+
 
 }

@@ -20,17 +20,8 @@ public class RidinglessonService {
                 .orElseThrow(() -> new NoSuchElementException("Ridinglesson with id: " + id + " not found!"));
     }
 
-    public Ridinglesson addRidinglesson(NewRidinglesson newRidinglesson) {
-        String id = RidinglessonIDService.randomId();
-
-        Ridinglesson ridinglessonToSave = new Ridinglesson(id, newRidinglesson.ridinginstructor(),
-                newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.date(),
-                newRidinglesson.time(), newRidinglesson.status());
-
-        return ridinglessonRepo.save(ridinglessonToSave);
-    }
-    public Ridinglesson save(NewRidinglesson newRidinglesson){
-        Ridinglesson ridinglesson = new Ridinglesson(UUID.randomUUID().toString(),
+    public Ridinglesson save(RidinglessonDTO newRidinglesson){
+        Ridinglesson ridinglesson = new Ridinglesson(null,
                 newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.date(),
                 newRidinglesson.time(), newRidinglesson.status());
         return ridinglessonRepo.save(ridinglesson);
