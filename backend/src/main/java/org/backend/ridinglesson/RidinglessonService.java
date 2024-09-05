@@ -12,6 +12,10 @@ import java.util.UUID;
 public class RidinglessonService {
     private final RidinglessonRepo ridinglessonRepo;
 
+    public void deleteById(String id) {
+        ridinglessonRepo.deleteById(id);
+    }
+
     public List<Ridinglesson> findAllLessons() {
         return ridinglessonRepo.findAll();
     }
@@ -26,4 +30,7 @@ public class RidinglessonService {
                 newRidinglesson.time(), newRidinglesson.status());
         return ridinglessonRepo.save(ridinglesson);
     }
+
+
+
 }

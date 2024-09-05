@@ -6,7 +6,8 @@ import NewRidinglessonCard from "./NewRidinglessonCard.tsx";
 type Props = {
     status: RidinglessonStatus,
     ridinglessons: Ridinglesson[],
-    onNewRidinglessonItemSaved: () => void
+    onNewRidinglessonItemSaved: () => void,
+    deleteData: (id:string) => void
 }
 
 export default function RidinglessonColumn(props: Props) {
@@ -14,7 +15,7 @@ export default function RidinglessonColumn(props: Props) {
         <div>
             <h2>{props.status}</h2>
         {
-            props.ridinglessons.map(ridinglesson => <RidinglessonCard ridinglesson={ridinglesson} key={ridinglesson.id}/>)
+            props.ridinglessons.map(ridinglesson => <RidinglessonCard deleteData={props.deleteData} ridinglesson={ridinglesson} key={ridinglesson.id}/>)
 
         }
         {

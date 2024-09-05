@@ -1,12 +1,15 @@
-import {Ridinglesson} from "../models/Ridinglesson.ts"; //rsf
-
-
+import {Ridinglesson} from "../models/Ridinglesson.ts";
 
 type Props = {
     ridinglesson: Ridinglesson;
-
+    deleteData: (id:string) => void;
 }
+
+
 export default function RidinglessonCard(props: Props) {
+    function deleteThisItem(id:string){
+        props.deleteData(id)
+    }
     return (
         <div className="ridinglesson-card">
             <ul>
@@ -29,6 +32,8 @@ export default function RidinglessonCard(props: Props) {
                     {props.ridinglesson.status}
                 </li>
             </ul>
+            <button onClick={() => deleteThisItem(props.ridinglesson.id)}>cancel</button>
         </div>
+
     );
 }

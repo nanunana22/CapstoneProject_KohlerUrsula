@@ -17,6 +17,13 @@ export default function App() {
                 setRidinglesson(response.data);
             })
     }
+    function deleteRidinglesson(id: string) {
+        axios.delete(`api/ridinglessons/${id}`)
+            .then(() => {
+                setRidinglesson(ridinglessons?.filter(ridinglesson => ridinglesson.id!== id));
+
+            })
+    }
     useEffect(fetchRidinglessons, []);
 
     if (!ridinglessons){
@@ -30,7 +37,7 @@ export default function App() {
               allPossibleRidinglessons.map(status =>{
                   const filteredRidinglessons : Ridinglesson[] =
                       ridinglessons.filter(ridinglesson => ridinglesson.status === status)
-                      return <RidinglessonColumn status={status} ridinglessons={filteredRidinglessons} onNewRidinglessonItemSaved={fetchRidinglessons}/>
+                      return <RidinglessonColumn deleteData={deleteRidinglesson} status={status} ridinglessons={filteredRidinglessons} onNewRidinglessonItemSaved={fetchRidinglessons}/>
                   })
 
           }
