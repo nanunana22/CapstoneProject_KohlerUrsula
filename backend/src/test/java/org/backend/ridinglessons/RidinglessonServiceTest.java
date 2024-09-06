@@ -3,9 +3,11 @@ package org.backend.ridinglessons;
 import org.backend.ridinglesson.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
+import org.yaml.snakeyaml.events.Event;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.backend.ridinglesson.RidinglessonStatus.TO_BOOK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -51,6 +53,20 @@ class RidinglessonServiceTest {
         doNothing().when(ridinglessonRepo).deleteById("2");
         ridinglessonService.deleteById("2");
         verify(ridinglessonRepo).deleteById("2");
+    }
+
+    @Test
+    void getRidinglessonById() {
+        //GIVEN
+        String id = "4";
+        Ridinglesson ridinglesson = new Ridinglesson("4", "ina", "dressage",
+                "rivien", "02.03.2024","15:00", TO_BOOK);
+        when(ridinglessonRepo.findById(id)).thenReturn(Optional.of(ridinglesson));
+        //WHEN
+        Ridinglesson actual = ridinglessonService.findRidinglessonById(id);
+        //THEN
+        verify(ridinglessonRepo).findById(id);
+        assertEquals(ridinglesson, actual);
     }
 
 
