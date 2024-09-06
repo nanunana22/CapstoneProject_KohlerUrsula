@@ -20,7 +20,7 @@ public class RidinglessonController {
         return ridinglessons;
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public Ridinglesson getRidinglessonById(@PathVariable String id) {
         return ridinglessonService.findRidinglessonById(id);
     }

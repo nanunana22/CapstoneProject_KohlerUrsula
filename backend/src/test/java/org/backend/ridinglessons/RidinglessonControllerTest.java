@@ -98,6 +98,7 @@ class RidinglessonControllerTest {
 
     @Test
     @DirtiesContext
+
     void getRidinglessonById() throws Exception {
         //GIVEN
         Ridinglesson newLesson = new Ridinglesson("3", "ina", "dressage", "lui", "2.3.23",
@@ -110,10 +111,10 @@ class RidinglessonControllerTest {
                 .andExpect(content().json("""
                     {
                          "id": "3",
-                         "ridingintructor": "ina",
+                         "ridinginstructor": "ina",
                          "ridingtype": "dressage",
                          "horse": "lui",
-                         "date": "23.05.2025",
+                         "date": "2.3.23",
                          "time": "15:00",
                          "status": "TO_CREATE"
      
