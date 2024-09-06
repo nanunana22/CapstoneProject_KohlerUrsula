@@ -1,12 +1,13 @@
 package org.backend.ridinglesson;
 import lombok.RequiredArgsConstructor;
+import lombok.With;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-
+@With
 @RequiredArgsConstructor
 @Service
 public class RidinglessonService {
@@ -31,6 +32,14 @@ public class RidinglessonService {
         return ridinglessonRepo.save(ridinglesson);
     }
 
-
-
+    public Ridinglesson updateLesson(RidinglessonDTO update, String id){
+        Ridinglesson ridinglesson = ridinglessonRepo.findById(id).orElseThrow(() -> new NoSuchElementException
+                ("No Ridinglesson with id: " + id + " found!"))
+                .withRidinginstructor(update.ridinginstructor())
+                .withRidingtype(update.ridingtype())
+                .withHorse(update.horse())
+                .withDate(update.date())
+                .withTime(update.time());
+        return ridinglessonRepo.save(ridinglesson);
+    }
 }

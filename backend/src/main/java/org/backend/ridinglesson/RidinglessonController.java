@@ -35,4 +35,9 @@ public class RidinglessonController {
     void delete(@PathVariable String id) {
         ridinglessonService.deleteById(id);
     }
+
+    @PutMapping(path = { "{id}"})
+    public Ridinglesson update(@PathVariable String id, @RequestBody RidinglessonDTO ridinglessonDTO) {
+        return ridinglessonService.updateLesson(ridinglessonDTO, id);
+    }
 }
