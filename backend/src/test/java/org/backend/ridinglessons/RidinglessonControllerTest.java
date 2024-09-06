@@ -100,16 +100,16 @@ class RidinglessonControllerTest {
     @DirtiesContext
     void getRidinglessonById() throws Exception {
         //GIVEN
-        Ridinglesson newLesson = new Ridinglesson("2", "ina", "dressage", "lui", "2.3.23",
+        Ridinglesson newLesson = new Ridinglesson("3", "ina", "dressage", "lui", "2.3.23",
                 "15:00", TO_CREATE);
         ridinglessonRepo.save(newLesson);
         //WHEN
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/ridinglessons/2"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/ridinglessons/3"))
                 //THEN
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                     {
-                         "id": "2",
+                         "id": "3",
                          "ridingintructor": "ina",
                          "ridingtype": "dressage",
                          "horse": "lui",

@@ -46,6 +46,13 @@ class RidinglessonServiceTest {
         assertEquals(ridinglesson, actual);
     }
 
+    @Test
+    void deleteRidinglesson_Test() {
+        doNothing().when(ridinglessonRepo).deleteById("2");
+        ridinglessonService.deleteById("2");
+        verify(ridinglessonRepo).deleteById("2");
+    }
+
 
 
 }
