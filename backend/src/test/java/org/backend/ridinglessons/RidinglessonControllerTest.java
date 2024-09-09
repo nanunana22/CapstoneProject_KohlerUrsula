@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.backend.ridinglesson.RidinglessonStatus.TO_CREATE;
+import static org.springframework.data.mongodb.core.query.Update.update;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -121,6 +122,41 @@ class RidinglessonControllerTest {
                         }
                           """));
 
+    }
+
+    @DirtiesContext
+    @Test
+    void updateLesson_Test_When_IdMatches() throws Exception {
+        // GIVEN
+        ridinglessonRepo.save(new Ridinglesson("1", "dani", "dressage", "lui",
+                "2.3.23", "15:00", TO_CREATE));
+
+        // WHEN
+        mockMvc.perform(update("/api/ridinglessons/id/update", ridinglessonRepo)
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                    "id": "1",
+                                   "ridinginstructor": "dani",
+                                   "ridingtype": "dressage",
+                                   "horse": "lui",
+                                   "date": "2.3.23",
+                                   "time": "15:00",
+                                   "status": "TO_CREATE"
+                                }
+                                """))
+                // THEN
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        { "id": "1",
+                                   "ridinginstructor": "dani",
+                                   "ridingtype": "dressage",
+                                   "horse": "lui",
+                                   "date": "2.3.23",
+                                   "time": "15:00",
+                                   "status": "TO_CREATE"
+                        }
+                        """));
     }
 
 }
