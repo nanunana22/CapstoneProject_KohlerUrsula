@@ -5,22 +5,22 @@ public record Ridinglesson(
         String ridinginstructor,
         String ridingtype,
         String horse,
-        String Date,
-        String Time,
+        String date,
+        String time,
         RidinglessonStatus status
 ) {
     Ridinglesson(
             String ridinginstructor,
             String ridingtype,
             String horse,
-            String Date,
-            String Time,
+            String date,
+            String time,
             RidinglessonStatus status
     ){
-        this(null, ridinginstructor, ridingtype, horse, Date, Time, status);
+        this(null, ridinginstructor, ridingtype, horse, date, time, status);
     }
 
     public Ridinglesson withId(String id) {
-        return new Ridinglesson(id, ridinginstructor, ridingtype, horse, Date, Time, status);
+        return new Ridinglesson(id, ridinginstructor, ridingtype, horse, date, time, status);
     }
 }

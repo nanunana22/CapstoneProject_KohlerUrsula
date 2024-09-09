@@ -21,6 +21,7 @@ import java.util.Set;
 
 import static org.backend.ridinglesson.RidinglessonStatus.TO_CREATE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -50,27 +51,76 @@ class RidinglessonControllerTest {
     @Test
     @DirtiesContext
     void postRidinglesson() throws Exception {
+        //Given
+        Ridinglesson newLesson = new Ridinglesson("2", "ina", "dressage", "lui", "2.3.23",
+                "15:00", TO_CREATE);
+        ridinglessonRepo.save(newLesson);
         //When
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/ridinglessons")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/ridinglessons/2")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(
                                 """
-                                             {
-                                                  "ridinginstructor": "Dani",
-                                                  "ridingtype": "Dressage",
-                                                  "horse": "Lui",
-                                                  "Date": "23.05.2025",
-                                                  "Time": "15:00",
-                                                  "status": "TO_CREATE"
+                                             {"id": "2",
+                                              "ridingintructor": "ina",
+                                              "ridingtype": "dressage",
+                                              "horse": "lui",
+                                              "date": "2.3.23",
+                                              "time": "15:00",
+                                               "status": "TO_CREATE"
+                                                 
+                                                  
                                              }
                                             """)
         );
         //Then
         List<Ridinglesson> allRidinglessons = ridinglessonRepo.findAll();
-        Assertions.assertTrue(allRidinglessons.contains(new Ridinglesson(allRidinglessons.get(0).id(), "Dani",
-                "Dressage", "Lui", "23.05.2025",
+        Assertions.assertTrue(allRidinglessons.contains(new Ridinglesson(allRidinglessons.get(0).id(), "ina",
+                "dressage", "lui", "2.3.23",
                 "15:00", TO_CREATE)
                 )
         );
     }
+    @Test
+    void deletebyid() throws Exception {
+        //Given
+        ridinglessonRepo.save(new Ridinglesson("2", "ina", "dressage", "lui", "2.3.23",
+                "15:00", TO_CREATE));
+        //When
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/ridinglessons/2"))
+                //Then
+                .andExpect(status().isOk());
+
+
+
+
+
+    }
+
+    @Test
+    @DirtiesContext
+
+    void getRidinglessonById() throws Exception {
+        //GIVEN
+        Ridinglesson newLesson = new Ridinglesson("3", "ina", "dressage", "lui", "2.3.23",
+                "15:00", TO_CREATE);
+        ridinglessonRepo.save(newLesson);
+        //WHEN
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/ridinglessons/3"))
+                //THEN
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                    {
+                         "id": "3",
+                         "ridinginstructor": "ina",
+                         "ridingtype": "dressage",
+                         "horse": "lui",
+                         "date": "2.3.23",
+                         "time": "15:00",
+                         "status": "TO_CREATE"
+     
+                        }
+                          """));
+
+    }
+
 }

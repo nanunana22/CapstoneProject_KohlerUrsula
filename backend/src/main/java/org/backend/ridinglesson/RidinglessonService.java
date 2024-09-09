@@ -12,6 +12,10 @@ import java.util.UUID;
 public class RidinglessonService {
     private final RidinglessonRepo ridinglessonRepo;
 
+    public void deleteById(String id) {
+        ridinglessonRepo.deleteById(id);
+    }
+
     public List<Ridinglesson> findAllLessons() {
         return ridinglessonRepo.findAll();
     }
@@ -20,19 +24,13 @@ public class RidinglessonService {
                 .orElseThrow(() -> new NoSuchElementException("Ridinglesson with id: " + id + " not found!"));
     }
 
-    public Ridinglesson addRidinglesson(NewRidinglesson newRidinglesson) {
-        String id = RidinglessonIDService.randomId();
-
-        Ridinglesson ridinglessonToSave = new Ridinglesson(id, newRidinglesson.ridinginstructor(),
-                newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.Date(),
-                newRidinglesson.Time(), newRidinglesson.status());
-
-        return ridinglessonRepo.save(ridinglessonToSave);
-    }
-    public Ridinglesson save(NewRidinglesson newRidinglesson){
-        Ridinglesson ridinglesson = new Ridinglesson(UUID.randomUUID().toString(),
-                newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.Date(),
-                newRidinglesson.Time(), newRidinglesson.status());
+    public Ridinglesson save(RidinglessonDTO newRidinglesson){
+        Ridinglesson ridinglesson = new Ridinglesson(null,
+                newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.date(),
+                newRidinglesson.time(), newRidinglesson.status());
         return ridinglessonRepo.save(ridinglesson);
     }
+
+
+
 }

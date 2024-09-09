@@ -15,23 +15,24 @@ public class RidinglessonController {
     private final RidinglessonRepo ridinglessonRepo;
 
     @GetMapping
-    public List<RidinglessonDTO> getAllLessons() {
+    public List<Ridinglesson> getAllLessons() {
         List<Ridinglesson> ridinglessons = ridinglessonService.findAllLessons();
-        return ridinglessons.stream()
-                .map(ridinglesson -> new RidinglessonDTO(ridinglesson.id(), ridinglesson.ridinginstructor(), ridinglesson.ridingtype(), ridinglesson.horse(),
-                        ridinglesson.Date(), ridinglesson.Time(), ridinglesson.status()))
-                .toList();
+        return ridinglessons;
     }
 
-    @GetMapping("id")
+    @GetMapping("/{id}")
     public Ridinglesson getRidinglessonById(@PathVariable String id) {
         return ridinglessonService.findRidinglessonById(id);
     }
 
     @PostMapping
-    public RidinglessonDTO postRidinglesson(@RequestBody NewRidinglesson newRidinglesson) {
+    public Ridinglesson postRidinglesson(@RequestBody RidinglessonDTO newRidinglesson) {
         Ridinglesson saved = ridinglessonService.save(newRidinglesson);
-        return new RidinglessonDTO(saved.id(), saved.ridinginstructor(), saved.ridingtype(),
-                saved.horse(), saved.Date(), saved.Time(), saved.status());
+        return saved;
+    }
+
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable String id) {
+        ridinglessonService.deleteById(id);
     }
 }
