@@ -11,8 +11,9 @@ import java.util.Optional;
 
 import static org.backend.ridinglesson.RidinglessonStatus.TO_BOOK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.util.AssertionErrors.assertNotNull;
+
 
 class RidinglessonServiceTest {
     RidinglessonRepo ridinglessonRepo = mock(RidinglessonRepo.class);
@@ -73,7 +74,7 @@ class RidinglessonServiceTest {
     @Test
     void testUpdateRidinglesson_Success(){
         //Given
-        String id = "4";
+        String id = "1";
 
         Ridinglesson existingRidinglesson = new Ridinglesson(id, "Ina", "Dressage", "Asmano",
                 "2.10.24", "12:00",TO_BOOK);
@@ -88,10 +89,11 @@ class RidinglessonServiceTest {
 
         Ridinglesson result = ridinglessonService.updateLesson(ridinglessonDTO, id);
         //Then
-        //assertNotNull(result);
-        assertEquals(ridinglessonDTO, result);
         verify(ridinglessonRepo).findById(id);
         verify(ridinglessonRepo).save(updateRidinglesson);
+        assertNotNull(result);
+        assertEquals(updateRidinglesson, result);
+
     }
 
 

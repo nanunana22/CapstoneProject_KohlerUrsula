@@ -27,21 +27,47 @@ export default function RidinglessonCard(props: Props) {
             horse: newHorse,
         } as Ridinglesson)
     }
-    function changeTextInstructor(event: React.ChangeEvent<HTMLInputElement>){
+
+    function changeTextInstructor(event: React.ChangeEvent<HTMLInputElement>) {
+        const newInstructor = event.target.value;
         setInstructor(event.target.value)
+        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
+            ...props.ridinglesson,
+            ridinginstructor: newInstructor,
+        } as Ridinglesson)
     }
 
-    function changeTextRidingtype(event: React.ChangeEvent<HTMLInputElement>){
+    function changeTextRidingtype(event: React.ChangeEvent<HTMLInputElement>) {
+        const newRidingtype = event.target.value;
         setRidingtype(event.target.value)
+        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
+            ...props.ridinglesson,
+            ridingtype: newRidingtype,
+        } as Ridinglesson)
     }
-    function changeTextDate(event: React.ChangeEvent<HTMLInputElement>){
+    function changeTextDate(event: React.ChangeEvent<HTMLInputElement>) {
+        const newDate = event.target.value;
         setDate(event.target.value)
+        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
+            ...props.ridinglesson,
+            date: newDate,
+        } as Ridinglesson)
     }
-    function changeTextTime(event: React.ChangeEvent<HTMLInputElement>){
+    function changeTextTime(event: React.ChangeEvent<HTMLInputElement>) {
+        const newTime = event.target.value;
         setTime(event.target.value)
+        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
+            ...props.ridinglesson,
+            time: newTime,
+        } as Ridinglesson)
     }
-    function changeTextStatus(event: React.ChangeEvent<HTMLInputElement>){
-        setStatus(event.target.value)
+    function changeTextStatus(event: React.ChangeEvent<HTMLSelectElement>) {
+        const newStatus = event.target.value;
+        setStatus(event.target.value as "TO_CREATE" | "TO_BOOK" | "BOOKED_LESSON")
+        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
+            ...props.ridinglesson,
+            status: newStatus,
+        } as Ridinglesson)
     }
 
     function deleteThisItem(id:string){
@@ -67,7 +93,12 @@ export default function RidinglessonCard(props: Props) {
                     <input value = {time} onInput={changeTextTime}/>
                 </li>
                 <li>
-                    <input value = {status} onInput={changeTextStatus}/>
+                    <select value={status} onChange={changeTextStatus}>
+                        <option value={"TO_CREATE"}>Create a new Ridinglesson</option>
+                        <option value={"TO_BOOK"}>Book</option>
+                        <option value={"BOOKED_LESSON"}>Booked</option>
+
+                    </select>
                 </li>
             </ul>
             <button onClick={() => deleteThisItem(props.ridinglesson.id)}>cancel</button>
