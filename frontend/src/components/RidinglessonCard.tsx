@@ -19,7 +19,7 @@ export default function RidinglessonCard(props: Props) {
 
 
 
-    function changeTextHorse(event: React.ChangeEvent<HTMLInputElement>) {
+    function changeTextHorse(event: React.ChangeEvent<HTMLSelectElement>) {
         const newHorse = event.target.value;
         setHorse(event.target.value)
         axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
@@ -28,7 +28,7 @@ export default function RidinglessonCard(props: Props) {
         } as Ridinglesson)
     }
 
-    function changeTextInstructor(event: React.ChangeEvent<HTMLInputElement>) {
+    function changeTextInstructor(event: React.ChangeEvent<HTMLSelectElement>) {
         const newInstructor = event.target.value;
         setInstructor(event.target.value)
         axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
@@ -37,7 +37,7 @@ export default function RidinglessonCard(props: Props) {
         } as Ridinglesson)
     }
 
-    function changeTextRidingtype(event: React.ChangeEvent<HTMLInputElement>) {
+    function changeTextRidingtype(event: React.ChangeEvent<HTMLSelectElement>) {
         const newRidingtype = event.target.value;
         setRidingtype(event.target.value)
         axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
@@ -45,7 +45,7 @@ export default function RidinglessonCard(props: Props) {
             ridingtype: newRidingtype,
         } as Ridinglesson)
     }
-    function changeTextDate(event: React.ChangeEvent<HTMLInputElement>) {
+    function changeTextDate(event: React.ChangeEvent<HTMLSelectElement>) {
         const newDate = event.target.value;
         setDate(event.target.value)
         axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
@@ -53,7 +53,7 @@ export default function RidinglessonCard(props: Props) {
             date: newDate,
         } as Ridinglesson)
     }
-    function changeTextTime(event: React.ChangeEvent<HTMLInputElement>) {
+    function changeTextTime(event: React.ChangeEvent<HTMLSelectElement>) {
         const newTime = event.target.value;
         setTime(event.target.value)
         axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
@@ -78,23 +78,43 @@ export default function RidinglessonCard(props: Props) {
         <div className="ridinglesson-card">
             <ul>
                 <li>
-                    <input value ={horse} onInput={changeTextHorse}/>
+                    <select value={horse} onChange={changeTextHorse}>
+                        <option>Quini</option>
+                        <option>Lui</option>
+                        <option>Asmano</option>
+                    </select>
                 </li>
                 <li>
-                    <input value ={instructor} onInput={changeTextInstructor}/>
+                    <select value={instructor} onChange={changeTextInstructor}>
+                        <option>Stefka</option>
+                        <option>Daniela</option>
+                        <option>Lena</option>
+                    </select>
                 </li>
                 <li>
-                    <input value = {ridingtype} onInput={changeTextRidingtype}/>
+                    <select value={ridingtype} onChange={changeTextRidingtype}>
+                        <option>Dressage</option>
+                        <option>Jumping</option>
+                        <option>Liberty Dressage</option>
+                    </select>
                 </li>
                 <li>
-                    <input value = {date} onInput={changeTextDate}/>
+                    <select value={date} onChange={changeTextDate}>
+                        <option>01.10.2024</option>
+                        <option>02.10.2024</option>
+                        <option>03.10.2024</option>
+                    </select>
                 </li>
                 <li>
-                    <input value = {time} onInput={changeTextTime}/>
+                    <select value = {time} onChange={changeTextTime}>
+                        <option>15:00</option>
+                        <option>16:00</option>
+                        <option>17:00</option>
+                        </select>
                 </li>
                 <li>
                     <select value={status} onChange={changeTextStatus}>
-                        <option value={"TO_CREATE"}>Create a new Ridinglesson</option>
+                        <option value={"TO_CREATE"}>Create</option>
                         <option value={"TO_BOOK"}>Book</option>
                         <option value={"BOOKED_LESSON"}>Booked</option>
 
