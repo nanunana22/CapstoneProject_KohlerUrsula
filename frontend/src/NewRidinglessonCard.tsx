@@ -36,6 +36,10 @@ export default function NewRidinglessonCard(props: Props): JSX.Element {
 
     function saveRidinglesson(){
         setTeacher("")
+        setInstructor("")
+        setTime("")
+        setDate("")
+        setType("")
         axios.post("/api/ridinglessons", {
             ridinginstructor: teacher,
             ridingtype: type,
@@ -49,11 +53,11 @@ export default function NewRidinglessonCard(props: Props): JSX.Element {
     }
     return(
         <div className="ridinglesson-card new-ridinglesson">
-            <input type="teacher" onInput={changeteacher}/>
-            <input type="type" onInput={changetype}/>
-            <input type="instructor" onInput={changeinstructor}/>
-            <input type="date" onInput={changeDate}/>
-            <input type="time" onInput={changeTime}/>
+            <input type="teacher" value={teacher} onInput={changeteacher}/>
+            <input type="type" value={type} onInput={changetype}/>
+            <input type="instructor" value={instructor} onInput={changeinstructor}/>
+            <input type="date" value={date} onInput={changeDate}/>
+            <input type="time" value={time} onInput={changeTime}/>
             <button onClick={saveRidinglesson}>save</button>
         </div>
     );

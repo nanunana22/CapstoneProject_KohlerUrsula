@@ -11,7 +11,9 @@ import java.util.Optional;
 
 import static org.backend.ridinglesson.RidinglessonStatus.TO_BOOK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
+
 
 class RidinglessonServiceTest {
     RidinglessonRepo ridinglessonRepo = mock(RidinglessonRepo.class);
@@ -68,6 +70,34 @@ class RidinglessonServiceTest {
         verify(ridinglessonRepo).findById(id);
         assertEquals(ridinglesson, actual);
     }
+
+    @Test
+    void testUpdateRidinglesson_Success(){
+        //Given
+        String id = "1";
+
+        Ridinglesson existingRidinglesson = new Ridinglesson(id, "Ina", "Dressage", "Asmano",
+                "2.10.24", "12:00",TO_BOOK);
+        RidinglessonDTO ridinglessonDTO = new RidinglessonDTO("Lena", "Dressage", "Asmano",
+                "2.10.24", "12:00", TO_BOOK);
+        Ridinglesson updateRidinglesson = new Ridinglesson("1", "Lena", "Dressage", "Asmano",
+                "2.10.24", "12:00",TO_BOOK);
+
+        //When
+        when(ridinglessonRepo.findById(id)).thenReturn(Optional.of(existingRidinglesson));
+        when(ridinglessonRepo.save(updateRidinglesson)).thenReturn(updateRidinglesson);
+
+        Ridinglesson result = ridinglessonService.updateLesson(ridinglessonDTO, id);
+        //Then
+        verify(ridinglessonRepo).findById(id);
+        verify(ridinglessonRepo).save(updateRidinglesson);
+        assertNotNull(result);
+        assertEquals(updateRidinglesson, result);
+
+    }
+
+
+
 
 
 

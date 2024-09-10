@@ -19,7 +19,7 @@ export default function RidinglessonColumn(props: Props) {
 
         }
         {
-            (props.status === "TO_CREATE") && <NewRidinglessonCard onNewRidinglessonSaved={props.onNewRidinglessonItemSaved}/>
+            (props.status === "TO_CREATE") && <NewRidinglessonCard  onNewRidinglessonSaved={props.onNewRidinglessonItemSaved}/>
 
         }
         </div>

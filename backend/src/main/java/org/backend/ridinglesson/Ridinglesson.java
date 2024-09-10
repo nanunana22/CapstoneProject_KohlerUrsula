@@ -1,5 +1,8 @@
 package org.backend.ridinglesson;
 
+import lombok.With;
+
+@With
 public record Ridinglesson(
         String id,
         String ridinginstructor,
@@ -20,7 +23,7 @@ public record Ridinglesson(
         this(null, ridinginstructor, ridingtype, horse, date, time, status);
     }
 
-    public Ridinglesson withId(String id) {
-        return new Ridinglesson(id, ridinginstructor, ridingtype, horse, date, time, status);
-    }
+    //public Ridinglesson withId(String id) {
+        //return new Ridinglesson(id, ridinginstructor, ridingtype, horse, date, time, status);
+    //}
 }
