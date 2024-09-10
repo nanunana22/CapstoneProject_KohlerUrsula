@@ -1,5 +1,6 @@
 import {Ridinglesson} from "../models/Ridinglesson.ts";
 import {useState} from "react";
+import axios from "axios";
 
 type Props = {
     ridinglesson: Ridinglesson;
@@ -18,8 +19,13 @@ export default function RidinglessonCard(props: Props) {
 
 
 
-    function changeTextHorse(event: React.ChangeEvent<HTMLInputElement>){
+    function changeTextHorse(event: React.ChangeEvent<HTMLInputElement>) {
+        const newHorse = event.target.value;
         setHorse(event.target.value)
+        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
+            ...props.ridinglesson,
+            horse: newHorse,
+        } as Ridinglesson)
     }
     function changeTextInstructor(event: React.ChangeEvent<HTMLInputElement>){
         setInstructor(event.target.value)
@@ -37,8 +43,6 @@ export default function RidinglessonCard(props: Props) {
     function changeTextStatus(event: React.ChangeEvent<HTMLInputElement>){
         setStatus(event.target.value)
     }
-
-
 
     function deleteThisItem(id:string){
         props.deleteData(id)
