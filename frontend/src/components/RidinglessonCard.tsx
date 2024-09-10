@@ -1,4 +1,5 @@
 import {Ridinglesson} from "../models/Ridinglesson.ts";
+import {useState} from "react";
 
 type Props = {
     ridinglesson: Ridinglesson;
@@ -7,29 +8,62 @@ type Props = {
 
 
 export default function RidinglessonCard(props: Props) {
+
+    const [horse, setHorse] = useState(props.ridinglesson.horse)
+    const [instructor, setInstructor] = useState(props.ridinglesson.ridinginstructor)
+    const [ridingtype, setRidingtype] = useState(props.ridinglesson.ridingtype)
+    const [date, setDate] = useState(props.ridinglesson.date)
+    const [time, setTime] = useState(props.ridinglesson.time)
+    const [status, setStatus] = useState(props.ridinglesson.status)
+
+
+
+    function changeTextHorse(event: React.ChangeEvent<HTMLInputElement>){
+        setHorse(event.target.value)
+    }
+    function changeTextInstructor(event: React.ChangeEvent<HTMLInputElement>){
+        setInstructor(event.target.value)
+    }
+
+    function changeTextRidingtype(event: React.ChangeEvent<HTMLInputElement>){
+        setRidingtype(event.target.value)
+    }
+    function changeTextDate(event: React.ChangeEvent<HTMLInputElement>){
+        setDate(event.target.value)
+    }
+    function changeTextTime(event: React.ChangeEvent<HTMLInputElement>){
+        setTime(event.target.value)
+    }
+    function changeTextStatus(event: React.ChangeEvent<HTMLInputElement>){
+        setStatus(event.target.value)
+    }
+
+
+
     function deleteThisItem(id:string){
         props.deleteData(id)
     }
+
     return (
         <div className="ridinglesson-card">
             <ul>
                 <li>
-                    {props.ridinglesson.horse}
+                    <input value ={horse} onInput={changeTextHorse}/>
                 </li>
                 <li>
-                    {props.ridinglesson.ridinginstructor}
+                    <input value ={instructor} onInput={changeTextInstructor}/>
                 </li>
                 <li>
-                    {props.ridinglesson.ridingtype}
+                    <input value = {ridingtype} onInput={changeTextRidingtype}/>
                 </li>
                 <li>
-                    {props.ridinglesson.date}
+                    <input value = {date} onInput={changeTextDate}/>
                 </li>
                 <li>
-                    {props.ridinglesson.time}
+                    <input value = {time} onInput={changeTextTime}/>
                 </li>
                 <li>
-                    {props.ridinglesson.status}
+                    <input value = {status} onInput={changeTextStatus}/>
                 </li>
             </ul>
             <button onClick={() => deleteThisItem(props.ridinglesson.id)}>cancel</button>

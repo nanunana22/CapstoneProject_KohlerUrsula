@@ -21,7 +21,7 @@ h1{
     padding: 10px;
     background-color: mediumaquamarine;
 }
-.ridinglesson-card.new-ridinglesson{
+.ridinglesson-card{
     display: grid;
     gap: 10px;
 }
