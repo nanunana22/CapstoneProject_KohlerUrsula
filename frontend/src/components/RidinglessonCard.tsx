@@ -45,17 +45,17 @@ export default function RidinglessonCard(props: Props) {
             ridingtype: newRidingtype,
         } as Ridinglesson)
     }
-    function changeTextDate(event: React.ChangeEvent<HTMLSelectElement>) {
-        const newDate = event.target.value;
-        setDate(event.target.value)
+    function changeTextDate(event: React.ChangeEvent<HTMLInputElement>) {
+        const newDate = event.target.type;
+        setDate(event.target.type)
         axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
             ...props.ridinglesson,
             date: newDate,
         } as Ridinglesson)
     }
-    function changeTextTime(event: React.ChangeEvent<HTMLSelectElement>) {
-        const newTime = event.target.value;
-        setTime(event.target.value)
+    function changeTextTime(event: React.ChangeEvent<HTMLInputElement>) {
+        const newTime = event.target.type;
+        setTime(event.target.type)
         axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
             ...props.ridinglesson,
             time: newTime,
@@ -99,18 +99,10 @@ export default function RidinglessonCard(props: Props) {
                     </select>
                 </li>
                 <li>
-                    <select value={date} onChange={changeTextDate}>
-                        <option>01.10.2024</option>
-                        <option>02.10.2024</option>
-                        <option>03.10.2024</option>
-                    </select>
+                    <input type="date" value={date} onInput={changeTextDate}/>
                 </li>
                 <li>
-                    <select value = {time} onChange={changeTextTime}>
-                        <option>15:00</option>
-                        <option>16:00</option>
-                        <option>17:00</option>
-                        </select>
+                <input type="time" value={time} onInput={changeTextTime}/>
                 </li>
                 <li>
                     <select value={status} onChange={changeTextStatus}>
