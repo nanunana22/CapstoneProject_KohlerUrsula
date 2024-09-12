@@ -30,16 +30,21 @@ public class RidinglessonService {
                 newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.date(),
                 newRidinglesson.time(), newRidinglesson.status());
         List<Ridinglesson> counthorses = ridinglessonRepo.findAll();
-        int counter = 0;
-                for (Ridinglesson element: counthorses){
-                    if (element.horse().equals(ridinglesson.horse()) && element.date().equals(ridinglesson.date())){
-                        counter = counter + 1;
-                        if (counter == 2){
-                            throw new IllegalArgumentException("booking is not possible as the horse has reached the maximum daily contigent");
-                        }
+        try{
+            int counter = 0;
+            for (Ridinglesson element : counthorses) {
+                if (element.horse().equals(ridinglesson.horse()) && element.date().equals(ridinglesson.date())) {
+                    counter = counter + 1;
+                    if (counter == 2) {
+                        throw new IllegalArgumentException("booking is not possible as the horse has reached the maximum daily contigent");
                     }
                 }
-        return ridinglessonRepo.save(ridinglesson);
+            }
+            return ridinglessonRepo.save(ridinglesson);
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException("booking is not possible as the horse has reached the maximum daily contigent", e);
+        }
     }
 
     public Ridinglesson updateLesson(RidinglessonDTO update, String id){

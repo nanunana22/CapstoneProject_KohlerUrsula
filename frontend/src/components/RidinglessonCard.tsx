@@ -61,6 +61,7 @@ export default function RidinglessonCard(props: Props) {
 
     function booklesson(){
         changeTextStatus()
+        alert("booking succeed");
     }
 
     return (

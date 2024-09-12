@@ -49,6 +49,8 @@ export default function NewRidinglessonCard(props: Props): JSX.Element {
             status: "TO_BOOK"
         } as Ridinglesson)
         .then(props.onNewRidinglessonSaved)
+            .then(()=>alert("lesson successfully added"))
+            .catch(()=>alert("booking is not possible as the horse has reached the maximum daily contigent"))
 
     }
     return(
