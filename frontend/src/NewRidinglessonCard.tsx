@@ -44,8 +44,8 @@ export default function NewRidinglessonCard(props: Props): JSX.Element {
             horse: horse,
             ridingtype: type,
             ridinginstructor: instructor,
-            time: date,
-            date: time,
+            date:date,
+            time:time,
             status: "TO_BOOK"
         } as Ridinglesson)
         .then(props.onNewRidinglessonSaved)

@@ -29,6 +29,16 @@ public class RidinglessonService {
         Ridinglesson ridinglesson = new Ridinglesson(null,
                 newRidinglesson.ridinginstructor(), newRidinglesson.ridingtype(), newRidinglesson.horse(), newRidinglesson.date(),
                 newRidinglesson.time(), newRidinglesson.status());
+        List<Ridinglesson> counthorses = ridinglessonRepo.findAll();
+        int counter = 0;
+                for (Ridinglesson element: counthorses){
+                    if (element.horse().equals(ridinglesson.horse()) && element.date().equals(ridinglesson.date())){
+                        counter = counter + 1;
+                        if (counter == 2){
+                            throw new IllegalArgumentException("booking is not possible as the horse has reached the maximum daily contigent");
+                        }
+                    }
+                }
         return ridinglessonRepo.save(ridinglesson);
     }
 
@@ -39,7 +49,8 @@ public class RidinglessonService {
                 .withRidingtype(update.ridingtype())
                 .withHorse(update.horse())
                 .withDate(update.date())
-                .withTime(update.time());
+                .withTime(update.time())
+                .withStatus(update.status());
         return ridinglessonRepo.save(ridinglesson);
     }
 }

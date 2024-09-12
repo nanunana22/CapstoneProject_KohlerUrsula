@@ -1,12 +1,13 @@
 import {Ridinglesson} from "../models/Ridinglesson.ts";
 import {useState} from "react";
 import axios from "axios";
+import {allPossibleRidinglessons} from "../RidinglessonStatus.ts";
 
 type Props = {
     ridinglesson: Ridinglesson;
+    onRidinglessonSaved: () => void;
     deleteData: (id:string) => void;
 }
-
 
 export default function RidinglessonCard(props: Props) {
 
@@ -20,58 +21,46 @@ export default function RidinglessonCard(props: Props) {
 
 
     function changeTextHorse(event: React.ChangeEvent<HTMLSelectElement>) {
-        const newHorse = event.target.value;
         setHorse(event.target.value)
-        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
-            ...props.ridinglesson,
-            horse: newHorse,
-        } as Ridinglesson)
     }
 
     function changeTextInstructor(event: React.ChangeEvent<HTMLSelectElement>) {
-        const newInstructor = event.target.value;
         setInstructor(event.target.value)
-        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
-            ...props.ridinglesson,
-            ridinginstructor: newInstructor,
-        } as Ridinglesson)
     }
 
     function changeTextRidingtype(event: React.ChangeEvent<HTMLSelectElement>) {
-        const newRidingtype = event.target.value;
         setRidingtype(event.target.value)
-        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
-            ...props.ridinglesson,
-            ridingtype: newRidingtype,
-        } as Ridinglesson)
     }
     function changeTextDate(event: React.ChangeEvent<HTMLInputElement>) {
-        const newDate = event.target.type;
-        setDate(event.target.type)
-        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
-            ...props.ridinglesson,
-            date: newDate,
-        } as Ridinglesson)
+        setDate(event.target.value)
     }
     function changeTextTime(event: React.ChangeEvent<HTMLInputElement>) {
-        const newTime = event.target.type;
-        setTime(event.target.type)
-        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
-            ...props.ridinglesson,
-            time: newTime,
-        } as Ridinglesson)
+        setTime(event.target.value)
     }
-    function changeTextStatus(event: React.ChangeEvent<HTMLSelectElement>) {
-        const newStatus = event.target.value;
-        setStatus(event.target.value as "TO_CREATE" | "TO_BOOK" | "BOOKED_LESSON")
-        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
-            ...props.ridinglesson,
-            status: newStatus,
-        } as Ridinglesson)
+    function changeTextStatus() {
+        setStatus("BOOKED_LESSON")
+        console.log(status);
     }
 
     function deleteThisItem(id:string){
         props.deleteData(id)
+    }
+
+    function saveupdate(){
+        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
+            horse: horse,
+            ridingtype: ridingtype,
+            ridinginstructor: instructor,
+            date: date,
+            time: time,
+            status: status,
+        } as Ridinglesson)
+            .then(props.onRidinglessonSaved)
+
+    }
+
+    function booklesson(){
+        changeTextStatus()
     }
 
     return (
@@ -99,21 +88,15 @@ export default function RidinglessonCard(props: Props) {
                     </select>
                 </li>
                 <li>
-                    <input type="date" value={date} onInput={changeTextDate}/>
+                    <input type="date" value={date} onChange={changeTextDate}/>
                 </li>
                 <li>
-                <input type="time" value={time} onInput={changeTextTime}/>
-                </li>
-                <li>
-                    <select value={status} onChange={changeTextStatus}>
-                        <option value={"TO_CREATE"}>Create</option>
-                        <option value={"TO_BOOK"}>Book</option>
-                        <option value={"BOOKED_LESSON"}>Booked</option>
-
-                    </select>
+                    <input type="time" value={time} onChange={changeTextTime}/>
                 </li>
             </ul>
             <button onClick={() => deleteThisItem(props.ridinglesson.id)}>cancel</button>
+            <button onClick={saveupdate}>update</button>
+            <button onClick={booklesson}>book lesson</button>
         </div>
 
     );
