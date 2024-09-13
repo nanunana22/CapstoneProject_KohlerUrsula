@@ -32,15 +32,19 @@ export default function App() {
     console.log(ridinglessons)
   return (
       <>
+
           <h1>Riding lesson booking system</h1>
-          <img width={300} src="/src/rosi.jpg" alt={"not found"}/>
+          <img width={200} src="/src/rosi.jpg" alt={"not found"}/>
+          <img width={200} src="/src/lui.jpg" alt={"not found"}/>
+          <img width={200} src="/src/Asmano.jpg" alt={"not found"}/>
           {
-              allPossibleRidinglessons.map(status =>{
-                  const filteredRidinglessons : Ridinglesson[] =
+              allPossibleRidinglessons.map(status => {
+                  const filteredRidinglessons: Ridinglesson[] =
                       ridinglessons.filter(ridinglesson => ridinglesson.status === status)
-                      return <RidinglessonColumn deleteData={deleteRidinglesson} status={status} ridinglessons={filteredRidinglessons}
-                                                 onNewRidinglessonItemSaved={fetchRidinglessons}/>
-                  })
+                  return <RidinglessonColumn deleteData={deleteRidinglesson} status={status}
+                                             ridinglessons={filteredRidinglessons}
+                                             onNewRidinglessonItemSaved={fetchRidinglessons}/>
+              })
 
           }
       </>

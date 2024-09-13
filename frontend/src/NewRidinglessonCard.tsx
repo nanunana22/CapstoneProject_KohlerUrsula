@@ -55,7 +55,7 @@ export default function NewRidinglessonCard(props: Props): JSX.Element {
     return(
         <div className="ridinglesson-card new-ridinglesson">
                 <select value={horse} onChange={changehorse}>
-                    <option>Quini</option>
+                    <option>Rosi</option>
                     <option>Lui</option>
                     <option>Asmano</option>
                 </select>
