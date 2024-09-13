@@ -33,6 +33,7 @@ export default function App() {
   return (
       <>
           <h1>Riding lesson booking system</h1>
+          <img width={300} src="/src/rosi.jpg" alt={"not found"}/>
           {
               allPossibleRidinglessons.map(status =>{
                   const filteredRidinglessons : Ridinglesson[] =

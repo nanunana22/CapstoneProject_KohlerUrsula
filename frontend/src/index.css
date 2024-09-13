@@ -10,6 +10,8 @@ body{
 h1{
     grid-column: 1/-1;
     text-align: center;
+    color: black;
+    background-color: mediumaquamarine;
 }
 
 .ridinglesson-card{
@@ -20,6 +22,7 @@ h1{
     margin-bottom: 20px;
     padding: 10px;
     background-color: mediumaquamarine;
+    text-align: center;
 }
 .ridinglesson-card{
     display: grid;
@@ -29,4 +32,5 @@ input{
     width: 100px;
     border-width: 0 0 1px 0;
     padding: 0;
+    color: blue;
 }
