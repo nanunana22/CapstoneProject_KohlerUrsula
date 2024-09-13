@@ -3,7 +3,6 @@ import {Ridinglesson} from "./models/Ridinglesson.ts";
 import axios from "axios";
 
 type Props = {
-    ridinglesson: Ridinglesson;
     onNewRidinglessonSaved: () => void
 
 }

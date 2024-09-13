@@ -19,7 +19,6 @@ export default function RidinglessonCard(props: Props) {
     const [status, setStatus] = useState(props.ridinglesson.status)
 
 
-
     function changeTextHorse(event: React.ChangeEvent<HTMLSelectElement>) {
         setHorse(event.target.value)
     }
@@ -56,12 +55,21 @@ export default function RidinglessonCard(props: Props) {
             status: status,
         } as Ridinglesson)
             .then(props.onRidinglessonSaved)
+            .catch(()=>alert("booking is not possible as the horse has reached the maximum daily contigent"))
 
     }
 
     function booklesson(){
         changeTextStatus()
-        alert("booking succeed");
+        axios.put("/api/ridinglessons/" + props.ridinglesson.id, {
+            horse: horse,
+            ridingtype: ridingtype,
+            ridinginstructor: instructor,
+            date: date,
+            time: time,
+            status: "BOOKED_LESSON"
+        } as Ridinglesson)
+            .then(props.onRidinglessonSaved)
     }
 
     return (
@@ -96,8 +104,8 @@ export default function RidinglessonCard(props: Props) {
                 </li>
             </ul>
             <button onClick={() => deleteThisItem(props.ridinglesson.id)}>cancel</button>
-            <button onClick={saveupdate}>update</button>
-            <button onClick={booklesson}>book lesson</button>
+            {status === "TO_BOOK" &&<button onClick={saveupdate}>update</button>}
+            {status === "TO_BOOK" && <button onClick={booklesson}>book lesson</button>}
         </div>
 
     );

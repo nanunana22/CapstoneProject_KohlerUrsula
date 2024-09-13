@@ -37,7 +37,8 @@ export default function App() {
               allPossibleRidinglessons.map(status =>{
                   const filteredRidinglessons : Ridinglesson[] =
                       ridinglessons.filter(ridinglesson => ridinglesson.status === status)
-                      return <RidinglessonColumn deleteData={deleteRidinglesson} status={status} ridinglessons={filteredRidinglessons} onNewRidinglessonItemSaved={fetchRidinglessons}/>
+                      return <RidinglessonColumn deleteData={deleteRidinglesson} status={status} ridinglessons={filteredRidinglessons}
+                                                 onNewRidinglessonItemSaved={fetchRidinglessons}/>
                   })
 
           }
