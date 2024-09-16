@@ -38,7 +38,6 @@ export default function RidinglessonCard(props: Props) {
     }
     function changeTextStatus() {
         setStatus("BOOKED_LESSON")
-        console.log(status);
     }
 
     function deleteThisItem(id:string){
