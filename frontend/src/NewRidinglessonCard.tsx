@@ -3,23 +3,22 @@ import {Ridinglesson} from "./models/Ridinglesson.ts";
 import axios from "axios";
 
 type Props = {
-    ridinglesson: Ridinglesson;
     onNewRidinglessonSaved: () => void
 
 }
 
 export default function NewRidinglessonCard(props: Props): JSX.Element {
 
-    const[teacher, setTeacher ] = useState('');
-    function changeteacher(event: React.ChangeEvent<HTMLInputElement>) {
-        setTeacher(event.target.value)
+    const[horse, setHorse ] = useState('');
+    function changehorse(event: React.ChangeEvent<HTMLSelectElement>) {
+        setHorse(event.target.value)
     }
     const[type, setType ] = useState('');
-    function changetype(event: React.ChangeEvent<HTMLInputElement>) {
+    function changetype(event: React.ChangeEvent<HTMLSelectElement>) {
         setType(event.target.value)
     }
     const[instructor, setInstructor ] = useState('');
-    function changeinstructor(event: React.ChangeEvent<HTMLInputElement>) {
+    function changeinstructor(event: React.ChangeEvent<HTMLSelectElement>) {
         setInstructor(event.target.value)
     }
     const[date, setDate ] = useState('');
@@ -35,30 +34,44 @@ export default function NewRidinglessonCard(props: Props): JSX.Element {
 
 
     function saveRidinglesson(){
-        setTeacher("")
+        setHorse("")
         setInstructor("")
         setTime("")
         setDate("")
         setType("")
         axios.post("/api/ridinglessons", {
-            ridinginstructor: teacher,
+            horse: horse,
             ridingtype: type,
-            horse: instructor,
-            time: date,
-            date: time,
+            ridinginstructor: instructor,
+            date:date,
+            time:time,
             status: "TO_BOOK"
         } as Ridinglesson)
         .then(props.onNewRidinglessonSaved)
+            .then(()=>alert("lesson successfully added"))
+            .catch(()=>alert("booking is not possible as the horse has reached the maximum daily contigent"))
 
     }
     return(
         <div className="ridinglesson-card new-ridinglesson">
-            <input type="teacher" value={teacher} onInput={changeteacher}/>
-            <input type="type" value={type} onInput={changetype}/>
-            <input type="instructor" value={instructor} onInput={changeinstructor}/>
-            <input type="date" value={date} onInput={changeDate}/>
-            <input type="time" value={time} onInput={changeTime}/>
-            <button onClick={saveRidinglesson}>save</button>
+                <select value={horse} onChange={changehorse}>
+                    <option>Rosi</option>
+                    <option>Lui</option>
+                    <option>Asmano</option>
+                </select>
+                <select value={instructor} onChange={changeinstructor}>
+                    <option>Stefka</option>
+                    <option>Daniela</option>
+                    <option>Lena</option>
+                </select>
+                <select value={type} onChange={changetype}>
+                    <option>Dressage</option>
+                    <option>Jumping</option>
+                    <option>Liberty Dressage</option>
+                </select>
+                <input type="date" value={date} onInput={changeDate}/>
+                <input type="time" value={time} onInput={changeTime}/>
+                <button onClick={saveRidinglesson}>save</button>
         </div>
-    );
+);
 }

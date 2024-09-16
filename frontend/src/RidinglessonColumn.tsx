@@ -15,7 +15,7 @@ export default function RidinglessonColumn(props: Props) {
         <div>
             <h2>{props.status}</h2>
         {
-            props.ridinglessons.map(ridinglesson => <RidinglessonCard deleteData={props.deleteData} ridinglesson={ridinglesson} key={ridinglesson.id}/>)
+            props.ridinglessons.map(ridinglesson => <RidinglessonCard onRidinglessonSaved={props.onNewRidinglessonItemSaved} deleteData={props.deleteData} ridinglesson={ridinglesson} key={ridinglesson.id}/>)
 
         }
         {
