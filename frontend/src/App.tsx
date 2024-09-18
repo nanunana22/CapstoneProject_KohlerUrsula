@@ -13,9 +13,16 @@ export default function App() {
 
     function login() {
         const host = window.location.host === 'localhost:5173' ? 'http://localhost:8080': window.location.origin
-        console.log(host, "!!!!!!!!!")
-
+        console.log(host, "!!!")
         window.open(host + '/oauth2/authorization/github', '_self')
+
+    }
+
+    function getUser(){
+        axios.get("api/users/me")
+            .then((response) => {
+                console.log(response.data)
+            })
     }
 
     function fetchRidinglessons() {
@@ -45,6 +52,7 @@ export default function App() {
           <img width={200} src="/src/lui.jpg" alt={"not found"}/>
           <img width={200} src="/src/Asmano.jpg" alt={"not found"}/>
           <button onClick={login}>Login</button>
+          <button onClick={getUser}>Me</button>
           {
               allPossibleRidinglessons.map(status => {
                   const filteredRidinglessons: Ridinglesson[] =
