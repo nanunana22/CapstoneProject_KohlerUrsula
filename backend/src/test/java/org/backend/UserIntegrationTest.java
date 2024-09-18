@@ -31,6 +31,6 @@ public class UserIntegrationTest {
     void testGetMe_withoutLogin_expectAnonymousUser() throws Exception{
         mockMvc.perform(get("/api/users/me"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("test-user"));
+                .andExpect(content().string("anonymousUser"));
     }
 }
