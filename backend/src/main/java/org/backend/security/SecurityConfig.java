@@ -24,6 +24,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/api/ridinglessons").authenticated()
                         .requestMatchers(HttpMethod.GET,"/api/ridinglessons").permitAll()
                         .anyRequest().permitAll())
+                .logout(logout -> logout.logoutUrl("/api/users/logout")
+                        .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200)))
+
                 .sessionManagement(sessions ->
                         sessions.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .oauth2Login(withDefaults());
