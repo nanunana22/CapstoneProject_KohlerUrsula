@@ -4,7 +4,6 @@ import {RidinglessonStatus} from "../RidinglessonStatus.ts";
 
 type AllFormsProps = {
     ridinglessons: Ridinglesson[],
-    onNewRidinglessonItemSaved: () => void,
     deleteRidinglesson: (id:string) => void
     fetchRidinglessons: () => void
     allPossibleRidinglessons: RidinglessonStatus[]
