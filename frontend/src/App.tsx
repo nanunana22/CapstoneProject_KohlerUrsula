@@ -6,9 +6,9 @@ import {allPossibleRidinglessons} from "./RidinglessonStatus.ts";
 import AllForms from "./components/AllForms.tsx";
 import {Route, Routes} from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute.tsx";
-import rosi from "/public/rosi.jpg";
-import lui from "/public/lui.jpg"
-import Asmano from"/public/Asmano.jpg"
+import rosi from "/dist/rosi.jpg";
+import lui from "/dist/lui.jpg"
+import Asmano from"/dist/Asmano.jpg"
 
 
 export default function App() {
