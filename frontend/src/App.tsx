@@ -57,18 +57,22 @@ export default function App() {
   return (
       <>
 
-          <h1 className={"currywurst"}>Riding lesson booking system</h1>
+          <h1 className={"überschrift"}>Riding lesson booking system</h1>
           <img width={200} src="/src/rosi.jpg" alt={"not found"}/>
           <img width={200} src="/src/lui.jpg" alt={"not found"}/>
           <img width={200} src="/src/Asmano.jpg" alt={"not found"}/>
-          <button onClick={login}>Login</button>
-          <button onClick={getUser}>Me</button>
+          <button className={"mybutton"} role={"button"} onClick={login}>Login</button>
+          <button className={"mybutton"} role={"button"} onClick={getUser}>Me</button>
+          <button className={"mybutton"} role={"button"} onClick={logout}>Logout</button>
+
+
           <p>{user}</p>
-          <button onClick={logout}>Logout</button>
           <Routes>
               <Route element={<ProtectedRoute user={user}/>}>
-                  <Route path={"/"} element={<AllForms allPossibleRidinglessons={allPossibleRidinglessons} ridinglessons =
-                      {ridinglessons} deleteRidinglesson = {deleteRidinglesson} fetchRidinglessons = {fetchRidinglessons}/>}/>
+                  <Route path={"/"}
+                         element={<AllForms allPossibleRidinglessons={allPossibleRidinglessons} ridinglessons=
+                             {ridinglessons} deleteRidinglesson={deleteRidinglesson}
+                                            fetchRidinglessons={fetchRidinglessons}/>}/>
               </Route>
           </Routes>
 
