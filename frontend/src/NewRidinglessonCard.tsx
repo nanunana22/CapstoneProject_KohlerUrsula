@@ -71,7 +71,7 @@ export default function NewRidinglessonCard(props: Props): JSX.Element {
                 </select>
                 <input type="date" value={date} onInput={changeDate}/>
                 <input type="time" value={time} onInput={changeTime}/>
-                <button onClick={saveRidinglesson}>save</button>
+                <button className={"mybutton2"} role={"button"} onClick={saveRidinglesson}>save</button>
         </div>
 );
 }

@@ -2,7 +2,6 @@ import './App.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Ridinglesson} from "./models/Ridinglesson.ts";
-import RidinglessonColumn from "./RidinglessonColumn.tsx";
 import {allPossibleRidinglessons} from "./RidinglessonStatus.ts";
 import AllForms from "./components/AllForms.tsx";
 import {Route, Routes} from "react-router-dom";
@@ -58,9 +57,9 @@ export default function App() {
       <>
 
           <h1 className={"überschrift"}>Riding lesson booking system</h1>
-          <img width={200} src="/src/rosi.jpg" alt={"not found"}/>
-          <img width={200} src="/src/lui.jpg" alt={"not found"}/>
-          <img width={200} src="/src/Asmano.jpg" alt={"not found"}/>
+          <img width={300} src="/src/rosi.jpg" alt={"not found"}/>
+          <img width={300} src="/src/lui.jpg" alt={"not found"}/>
+          <img width={300} src="/src/Asmano.jpg" alt={"not found"}/>
           <button className={"mybutton"} role={"button"} onClick={login}>Login</button>
           <button className={"mybutton"} role={"button"} onClick={getUser}>Me</button>
           <button className={"mybutton"} role={"button"} onClick={logout}>Logout</button>
