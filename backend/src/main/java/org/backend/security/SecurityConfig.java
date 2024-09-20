@@ -29,7 +29,7 @@ public class SecurityConfig {
 
                 .sessionManagement(sessions ->
                         sessions.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-                .oauth2Login(withDefaults());
+                .oauth2Login(login -> login.defaultSuccessUrl("http://localhost:5173"));
 
         return http.build();
 
