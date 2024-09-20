@@ -6,6 +6,10 @@ import {allPossibleRidinglessons} from "./RidinglessonStatus.ts";
 import AllForms from "./components/AllForms.tsx";
 import {Route, Routes} from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute.tsx";
+import rosi from "/public/rosi.jpg";
+import lui from "/public/lui.jpg"
+import Asmano from"/public/Asmano.jpg"
+
 
 export default function App() {
 
@@ -55,17 +59,16 @@ export default function App() {
 
   return (
       <>
-
+          <div>
           <h1 className={"überschrift"}>Riding lesson booking system</h1>
-          <img width={300} src="/src/rosi.jpg" alt={"not found"}/>
-          <img width={300} src="/src/lui.jpg" alt={"not found"}/>
-          <img width={300} src="/src/Asmano.jpg" alt={"not found"}/>
+          <img width={300} src={rosi} alt={"not found"}/>
+          <img width={300} src={lui} alt={"not found"}/>
+          <img width={300} src={Asmano} alt={"not found"}/>
           <button className={"mybutton"} role={"button"} onClick={login}>Login</button>
           <button className={"mybutton"} role={"button"} onClick={getUser}>Me</button>
           <button className={"mybutton"} role={"button"} onClick={logout}>Logout</button>
-
-
           <p>{user}</p>
+          </div>
           <Routes>
               <Route element={<ProtectedRoute user={user}/>}>
                   <Route path={"/"}
