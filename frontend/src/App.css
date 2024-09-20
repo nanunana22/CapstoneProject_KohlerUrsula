@@ -6,6 +6,20 @@
   color: white;
   background-color: black;
 }
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Drei Spalten Layout */
+  grid-gap: 20px; /* Abstand zwischen den Spalten */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.item {
+  background-color: lightgrey;
+  padding: 20px;
+}
+
+
 
 .logo {
   height: 6em;

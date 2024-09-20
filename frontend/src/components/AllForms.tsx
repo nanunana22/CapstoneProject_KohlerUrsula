@@ -1,7 +1,15 @@
 import {Ridinglesson} from "../models/Ridinglesson.ts";
 import RidinglessonColumn from "../RidinglessonColumn.tsx";
+import {RidinglessonStatus} from "../RidinglessonStatus.ts";
 
-export default function AllForms({allPossibleRidinglessons, ridinglessons, deleteRidinglesson, fetchRidinglessons}){
+type AllFormsProps = {
+    ridinglessons: Ridinglesson[],
+    onNewRidinglessonItemSaved: () => void,
+    deleteRidinglesson: (id:string) => void
+    fetchRidinglessons: () => void
+    allPossibleRidinglessons: RidinglessonStatus[]
+}
+export default function AllForms({allPossibleRidinglessons, ridinglessons, deleteRidinglesson, fetchRidinglessons}: AllFormsProps){
     return allPossibleRidinglessons.map(status => {
             const filteredRidinglessons: Ridinglesson[] =
                 ridinglessons.filter(ridinglesson => ridinglesson.status === status)
