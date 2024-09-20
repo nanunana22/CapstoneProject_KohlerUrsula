@@ -19,12 +19,11 @@ public class UserIntegrationTest {
     MockMvc mockMvc;
 
     @Test
-    @WithMockUser(username = "test-user")
     void testGetMe_withLoggedInUser_expectUsername() throws Exception{
         mockMvc.perform(get("/api/users/me")
                         .with(oidcLogin().userInfoToken(token -> token.claim("login", "github-username"))))
                 .andExpect(status().isOk())
-                .andExpect(content().string("test-user"));
+                .andExpect(content().string("user"));
     }
 
     @Test

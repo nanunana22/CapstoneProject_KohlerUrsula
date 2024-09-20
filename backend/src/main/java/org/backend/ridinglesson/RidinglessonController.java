@@ -32,7 +32,7 @@ public class RidinglessonController {
     }
 
     @DeleteMapping("/{id}")
-    void delete(@PathVariable String id) {
+    public void delete(@PathVariable String id) {
         ridinglessonService.deleteById(id);
     }
 

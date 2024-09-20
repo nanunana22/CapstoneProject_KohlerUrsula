@@ -1,10 +1,7 @@
 package org.backend.ridinglessons;
 
-import lombok.RequiredArgsConstructor;
-import org.backend.horses.HorseRepository;
 import org.backend.ridinglesson.Ridinglesson;
 import org.backend.ridinglesson.RidinglessonRepo;
-import org.backend.ridinglesson.RidinglessonService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +12,9 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.util.List;
-import java.util.Set;
-
 import static org.backend.ridinglesson.RidinglessonStatus.TO_CREATE;
-import static org.springframework.data.mongodb.core.query.Update.update;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oidcLogin;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -58,7 +51,7 @@ class RidinglessonControllerTest {
                 "15:00", TO_CREATE);
         ridinglessonRepo.save(newLesson);
         //When
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/ridinglessons/2")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/ridinglessons")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(
                                 """
@@ -88,7 +81,8 @@ class RidinglessonControllerTest {
         ridinglessonRepo.save(new Ridinglesson("2", "ina", "dressage", "lui", "2.3.23",
                 "15:00", TO_CREATE));
         //When
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/ridinglessons/2"))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/ridinglessons/2")
+                        .with(oidcLogin().userInfoToken(token -> token.claim("login", "github-username"))))
                 //Then
                 .andExpect(status().isOk());
 

@@ -1,7 +1,6 @@
 import {Ridinglesson} from "../models/Ridinglesson.ts";
 import {useState} from "react";
 import axios from "axios";
-import {allPossibleRidinglessons} from "../RidinglessonStatus.ts";
 
 type Props = {
     ridinglesson: Ridinglesson;
@@ -102,9 +101,9 @@ export default function RidinglessonCard(props: Props) {
                     <input type="time" value={time} onChange={changeTextTime}/>
                 </li>
             </ul>
-            <button onClick={() => deleteThisItem(props.ridinglesson.id)}>cancel</button>
-            {status === "TO_BOOK" &&<button onClick={saveupdate}>update</button>}
-            {status === "TO_BOOK" && <button onClick={booklesson}>book lesson</button>}
+            <button className={"mybutton2"} role={"button"} onClick={() => deleteThisItem(props.ridinglesson.id)}>cancel</button>
+            {status === "TO_BOOK" &&<button className={"mybutton2"} role={"button"} onClick={saveupdate}>update</button>}
+            {status === "TO_BOOK" && <button className={"mybutton2"} role={"button"} onClick={booklesson}>book lesson</button>}
         </div>
 
     );
